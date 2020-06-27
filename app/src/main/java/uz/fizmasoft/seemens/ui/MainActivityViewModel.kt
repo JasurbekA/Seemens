@@ -23,17 +23,15 @@ class MainActivityViewModel @Inject constructor(private val repo: SeemensRepo) :
 
         try {
             val response = async { return@async repo.loadResponse() }.await()
-            if (response.isSuccessful)
-                _seemensResponse.value = LoadingResponseState.OnSuccess(response.body()!!)
+            _seemensResponse.value =  if (response.isSuccessful) LoadingResponseState.OnSuccess(response.body()!!)
+            else LoadingResponseState.OnError("Cannot load from the server")
 
         } catch (e: ConnectException) {
             _seemensResponse.value = LoadingResponseState.OnError(
-                "Cannot Connect to the server.\nIs network available?"
+                "Cannot connect to the server.\nNetwork is unreachable"
             )
         } catch (e: Exception) {
-            _seemensResponse.value = LoadingResponseState.OnError(
-                "${e.message}" // in case Exception object is null
-            )
+            _seemensResponse.value = LoadingResponseState.OnError("${e.message}" )
         }
     }
 

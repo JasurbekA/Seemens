@@ -10,7 +10,6 @@ import javax.inject.Inject
 
 class MainActivity : DaggerAppCompatActivity() {
 
-
     private lateinit var mainViewModel: MainActivityViewModel
 
     @Inject
@@ -37,19 +36,16 @@ class MainActivity : DaggerAppCompatActivity() {
         )[MainActivityViewModel::class.java]
     }
 
-    private fun requestData() {
-        mainViewModel.loadSeemsResponse()
-    }
+    private fun requestData() = mainViewModel.loadSeemsResponse()
 
-    private fun observeData() {
-        mainViewModel.seemensResponse.observe(
-            this,
-            Observer {
-                when (it) {
-                    is MainActivityViewModel.LoadingResponseState.OnLoading -> println("observeData Loading")
-                    is MainActivityViewModel.LoadingResponseState.OnSuccess -> println("observeData Success")
-                    is MainActivityViewModel.LoadingResponseState.OnError -> println("observeData Error")
-                }
-            })
-    }
+
+    private fun observeData() = mainViewModel.seemensResponse.observe(this,
+        Observer {
+            when (it) {
+                is MainActivityViewModel.LoadingResponseState.OnLoading -> println("observeData Loading")
+                is MainActivityViewModel.LoadingResponseState.OnSuccess -> println("observeData Success")
+                is MainActivityViewModel.LoadingResponseState.OnError -> println("observeData Error")
+            }
+        })
+    
 }
