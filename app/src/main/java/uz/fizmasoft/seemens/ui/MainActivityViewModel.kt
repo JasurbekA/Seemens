@@ -6,9 +6,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
-import uz.fizmasoft.seemens.data.local.SeemensResponse
+import uz.fizmasoft.seemens.data.local.model.SeemensResponse
 import uz.fizmasoft.seemens.data.repo.SeemensRepo
 import java.net.ConnectException
+import java.net.UnknownHostException
 import javax.inject.Inject
 
 class MainActivityViewModel @Inject constructor(private val repo: SeemensRepo) : ViewModel() {
@@ -27,9 +28,9 @@ class MainActivityViewModel @Inject constructor(private val repo: SeemensRepo) :
             else LoadingResponseState.OnError("Cannot load from the server")
 
         } catch (e: ConnectException) {
-            _seemensResponse.value = LoadingResponseState.OnError(
-                "Cannot connect to the server.\nNetwork is unreachable"
-            )
+            _seemensResponse.value = LoadingResponseState.OnError("Cannot connect to the server.\nNetwork is unreachable")
+        } catch (e : UnknownHostException) {
+            _seemensResponse.value = LoadingResponseState.OnError("Cannot connect to the server.\nNetwork is unreachable")
         } catch (e: Exception) {
             _seemensResponse.value = LoadingResponseState.OnError("${e.message}" )
         }

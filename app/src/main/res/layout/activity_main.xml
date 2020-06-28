@@ -13,28 +13,27 @@
 
 
         <androidx.viewpager.widget.ViewPager
-            android:fitsSystemWindows="false"
             android:id="@+id/mainImageCarousel"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_400sdp"
+            android:layout_height="@dimen/_370sdp"
+            android:fitsSystemWindows="false"
             android:visibility="visible"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_launcher_background" />
 
         <com.google.android.material.tabs.TabLayout
-            android:background="@android:color/transparent"
             android:id="@+id/carouselImageIndicator"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:tabGravity="start"
-            app:tabPaddingEnd="0dp"
-            app:tabMode="fixed"
-            app:tabIndicatorColor="@android:color/transparent"
-            app:tabBackground="@drawable/indicator_selector"
             android:layout_marginStart="@dimen/_10sdp"
+            android:background="@android:color/transparent"
             app:layout_constraintBottom_toBottomOf="@id/mainImageCarousel"
             app:layout_constraintStart_toStartOf="@id/mainImageCarousel"
-            />
+            app:tabBackground="@drawable/indicator_selector"
+            app:tabGravity="start"
+            app:tabIndicatorColor="@android:color/transparent"
+            app:tabMode="fixed"
+            app:tabPaddingEnd="0dp" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:layout_width="@dimen/_25sdp"
@@ -57,9 +56,11 @@
             app:srcCompat="@drawable/share" />
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/subCarouseTitle"
+            android:id="@+id/productName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_2sdp"
+            android:layout_marginBottom="@dimen/_2sdp"
             android:ellipsize="end"
             android:gravity="center"
             android:maxLines="1"
@@ -76,7 +77,7 @@
             android:paddingStart="@dimen/_10sdp"
             android:paddingEnd="@dimen/_10sdp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintTop_toBottomOf="@id/subCarouseTitle" />
+            app:layout_constraintTop_toBottomOf="@id/productName" />
 
 
         <com.google.android.material.textview.MaterialTextView
@@ -158,10 +159,10 @@
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/sizeOfProduct"
-            android:layout_marginTop="@dimen/_2sdp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_2sdp"
             android:text="Размер:"
             android:textColor="@color/colorBlackText"
             android:textSize="@dimen/_12sdp"
@@ -205,7 +206,7 @@
             android:text="В избранное"
             android:textColor="@android:color/black"
             app:backgroundTint="@android:color/transparent"
-            app:icon="@drawable/ic_favorite"
+            app:icon="@drawable/ic_favorite_outline"
             app:iconGravity="textStart"
             app:iconTint="@android:color/black"
             app:layout_constrainedWidth="true"
@@ -251,22 +252,41 @@
             app:layout_constraintEnd_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/favoriteImage" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/infoAboutProduct"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:textAlignment="viewStart"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/secondDivider"
+        <LinearLayout
+            android:id="@+id/infoAboutProductContainer"
             android:layout_width="match_parent"
-            app:icon="@drawable/ic_add"
-            android:textColor="@color/colorBlackText"
-            app:iconGravity="end"
-            android:stateListAnimator="@null"
-            android:text="ИНФОРМАЦИЯ О ПРОДУКТЕ"
-            app:backgroundTint="@android:color/transparent"
-            app:iconTint="@color/colorBlackText"
             android:layout_height="wrap_content"
-            tools:ignore="UnusedAttribute" />
+            android:orientation="vertical"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/secondDivider">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/infoAboutProduct"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:stateListAnimator="@null"
+                android:text="ИНФОРМАЦИЯ О ПРОДУКТЕ"
+                android:textAlignment="viewStart"
+                android:textColor="@color/colorBlackText"
+                app:backgroundTint="@android:color/transparent"
+                app:icon="@drawable/ic_add"
+                app:iconGravity="end"
+                app:iconTint="@color/colorBlackText"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/secondDivider"
+                tools:ignore="UnusedAttribute" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:visibility="gone"
+                android:id="@+id/infoMainContent"
+                android:paddingStart="@dimen/_10sdp"
+                android:paddingEnd="@dimen/_10sdp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+
+        </LinearLayout>
 
 
         <View
@@ -279,23 +299,23 @@
             android:background="@android:color/darker_gray"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintEnd_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/infoAboutProduct" />
+            app:layout_constraintTop_toBottomOf="@id/infoAboutProductContainer" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/ingredientProduct"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:textAlignment="viewStart"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/thirdDivider"
             android:layout_width="match_parent"
-            app:icon="@drawable/ic_add"
-            android:textColor="@color/colorBlackText"
-            app:iconGravity="end"
+            android:layout_height="wrap_content"
             android:stateListAnimator="@null"
             android:text="СОСТАВ И УХОД"
+            android:textAlignment="viewStart"
+            android:textColor="@color/colorBlackText"
             app:backgroundTint="@android:color/transparent"
+            app:icon="@drawable/ic_add"
+            app:iconGravity="end"
             app:iconTint="@color/colorBlackText"
-            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/thirdDivider"
             tools:ignore="UnusedAttribute" />
 
 
@@ -314,16 +334,16 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/delivery"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:textAlignment="viewStart"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/fourthDivider"
             android:layout_width="match_parent"
-            android:textColor="@color/colorBlackText"
+            android:layout_height="wrap_content"
             android:stateListAnimator="@null"
             android:text="ДОСТАВКА И ПРИМЕРКА"
+            android:textAlignment="viewStart"
+            android:textColor="@color/colorBlackText"
             app:backgroundTint="@android:color/transparent"
-            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/fourthDivider"
             tools:ignore="UnusedAttribute" />
 
         <View
@@ -339,59 +359,61 @@
             app:layout_constraintTop_toBottomOf="@id/delivery" />
 
         <com.google.android.material.textview.MaterialTextView
-            android:text="Deliver and return"
             android:id="@+id/deliverReturn"
-            android:textSize="@dimen/_13sdp"
-            android:layout_marginStart="@dimen/_10sdp"
-            android:textColor="@color/colorBlackText"
-            app:layout_constraintTop_toBottomOf="@id/fifthDivider"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:text="Deliver and return"
+            android:textColor="@color/colorBlackText"
+            android:textSize="@dimen/_13sdp"
+            app:layout_constraintTop_toBottomOf="@id/fifthDivider" />
 
 
         <TextView
             android:id="@+id/deliveryDataLabel"
-            android:textSize="@dimen/_13sdp"
-            android:layout_marginStart="@dimen/_10sdp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/deliverReturn"
-            android:textColor="@android:color/darker_gray"
-            android:text="Deliver"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:text="Deliver"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="@dimen/_13sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/deliverReturn" />
 
         <TextView
+            android:id="@+id/closestDelivery"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:text="16 March, Monday"
             android:textColor="@color/colorBlackText"
             android:textSize="@dimen/_13sdp"
-            android:text="16 March, Monday"
-            android:layout_marginStart="@dimen/_10sdp"
-            app:layout_constraintTop_toTopOf="@id/deliveryDataLabel"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/deliveryDataLabel"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"/>
+            app:layout_constraintTop_toTopOf="@id/deliveryDataLabel" />
 
         <TextView
             android:id="@+id/returnDataLabel"
-            android:textSize="@dimen/_13sdp"
-            android:layout_marginStart="@dimen/_10sdp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/deliveryDataLabel"
-            android:textColor="@android:color/darker_gray"
-            android:text="Return"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:text="Return"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="@dimen/_13sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/deliveryDataLabel" />
 
         <TextView
+            android:id="@+id/returnDate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:text="During 14 days after receiving product"
             android:textColor="@color/colorBlackText"
             android:textSize="@dimen/_13sdp"
-            android:text="During 14 days after receiving product"
-            android:layout_marginStart="@dimen/_10sdp"
-            app:layout_constraintTop_toTopOf="@id/returnDataLabel"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/returnDataLabel"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"/>
+            app:layout_constraintTop_toTopOf="@id/returnDataLabel" />
 
         <View
             android:id="@+id/sixthDivider"
@@ -431,13 +453,13 @@
 
         <TextView
 
-            android:layout_marginStart="@dimen/_10sdp"
-            android:textColor="@color/colorBlackText"
-            app:layout_constraintTop_toBottomOf="@id/seventhDivider"
             android:id="@+id/relatedProductsTitle"
-            android:text="Похожие товары"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:text="Похожие товары"
+            android:textColor="@color/colorBlackText"
+            app:layout_constraintTop_toBottomOf="@id/seventhDivider" />
 
 
         <androidx.recyclerview.widget.RecyclerView
@@ -466,16 +488,16 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/allProductInBrand"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:textAlignment="viewStart"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/eighthDivider"
             android:layout_width="match_parent"
-            android:textColor="@color/colorBlackText"
+            android:layout_height="wrap_content"
             android:stateListAnimator="@null"
             android:text="Все Mango"
+            android:textAlignment="viewStart"
+            android:textColor="@color/colorBlackText"
             app:backgroundTint="@android:color/transparent"
-            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/eighthDivider"
             tools:ignore="UnusedAttribute" />
 
 
@@ -494,16 +516,16 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/allProductInType"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:textAlignment="viewStart"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/ninthDivider"
             android:layout_width="match_parent"
-            android:textColor="@color/colorBlackText"
+            android:layout_height="wrap_content"
             android:stateListAnimator="@null"
             android:text="Все верхняя одежда Mango"
+            android:textAlignment="viewStart"
+            android:textColor="@color/colorBlackText"
             app:backgroundTint="@android:color/transparent"
-            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ninthDivider"
             tools:ignore="UnusedAttribute" />
 
         <View
@@ -548,13 +570,13 @@
 
         <TextView
 
-            android:layout_marginStart="@dimen/_10sdp"
-            android:textColor="@color/colorBlackText"
-            app:layout_constraintTop_toBottomOf="@id/eleventhDivider"
             android:id="@+id/recentlySeen"
-            android:text="Вы недавно просматривали"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:text="Вы недавно просматривали"
+            android:textColor="@color/colorBlackText"
+            app:layout_constraintTop_toBottomOf="@id/eleventhDivider" />
 
 
         <androidx.recyclerview.widget.RecyclerView

@@ -15,7 +15,7 @@ class CarouselIndicatorAdapter (
 ) : PagerAdapter() {
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
         val layoutScreen: View =
-            LayoutInflater.from(container.context).inflate(R.layout.main_image_carousel, container, false)
+            LayoutInflater.from(container.context).inflate(R.layout.item_main_image_carousel, container, false)
         val productImageContainer = layoutScreen.findViewById<AppCompatImageView>(R.id.productImage)
         productImageContainer.load(productImagesURL[position])
         container.addView(layoutScreen)

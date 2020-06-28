@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.AppCompatImageView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:srcCompat="@drawable/social_facebook"
+    android:layout_marginTop="@dimen/_3sdp"
+    android:id="@+id/socialMediaImage"
+    android:layout_marginEnd="@dimen/_7sdp"
+    android:layout_width="@dimen/_40sdp"
+    android:layout_height="@dimen/_40sdp" />

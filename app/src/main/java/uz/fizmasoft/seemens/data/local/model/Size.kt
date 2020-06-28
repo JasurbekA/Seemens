@@ -1,4 +1,5 @@
-package uz.fizmasoft.seemens.data.local
+package uz.fizmasoft.seemens.data.local.model
+
 data class Size (
 	val id : Int,
 	val name : String,

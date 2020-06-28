@@ -4,7 +4,7 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.http.GET
 import retrofit2.http.Headers
-import uz.fizmasoft.seemens.data.local.SeemensResponse
+import uz.fizmasoft.seemens.data.local.model.SeemensResponse
 
 interface SeemensApiService {
 

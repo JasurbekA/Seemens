@@ -7,6 +7,9 @@
 
     <color name="tabIndicatorGray">#c0c0c0</color>
 
-    <color name="tabIndicatorSelected">#4c84ff</color>
     <color name="colorBlackText">#D0000000</color>
+
+
+    <color name="sizeSelectedColor">@color/colorBlackText</color>
+    <color name="sizeUnSelectedColor">@color/tabIndicatorGray</color>
 </resources>

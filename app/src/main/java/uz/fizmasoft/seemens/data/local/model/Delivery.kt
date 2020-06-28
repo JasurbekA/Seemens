@@ -1,4 +1,4 @@
-package uz.fizmasoft.seemens.data.local
+package uz.fizmasoft.seemens.data.local.model
 
 import com.google.gson.annotations.SerializedName
 
