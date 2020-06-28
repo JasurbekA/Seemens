@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">Seemens</string>
+    <string name="size_title">Размер:</string>
+    <string name="add_to_cart">Добавить в корзину</string>
+    <string name="liked_image">В избранное</string>
+    <string name="share_image">Поделиться</string>
+    <string name="about_product">ИНФОРМАЦИЯ О ПРОДУКТЕ</string>
+    <string name="product_elements">СОСТАВ И УХОД</string>
+    <string name="deliveryAndReturn">ДОСТАВКА И ПРИМЕРКА</string>
+    <string name="delivery_title">Deliver and return</string>
+    <string name="deliver">Deliver</string>
+    <string name="returnTitle">Return</string>
+    <string name="similar_goods">Похожие товары</string>
+    <string name="recently_seen">Вы недавно просматривали</string>
 </resources>

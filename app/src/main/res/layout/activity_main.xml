@@ -4,12 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:clickable="true"
+    android:focusable="true"
     tools:context=".ui.MainActivity">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="true">
 
 
         <androidx.viewpager.widget.ViewPager
@@ -36,6 +40,7 @@
             app:tabPaddingEnd="0dp" />
 
         <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/backArrow"
             android:layout_width="@dimen/_25sdp"
             android:layout_height="@dimen/_25sdp"
             android:layout_marginStart="@dimen/_10sdp"
@@ -46,6 +51,7 @@
 
 
         <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/shareProduct"
             android:layout_width="@dimen/_25sdp"
             android:layout_height="@dimen/_25sdp"
             android:layout_marginTop="@dimen/_25sdp"
@@ -60,11 +66,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/_2sdp"
-            android:paddingBottom="@dimen/_2sdp"
             android:ellipsize="end"
             android:gravity="center"
             android:maxLines="1"
-            android:text="Black"
+            android:paddingBottom="@dimen/_2sdp"
             android:textColor="@android:color/black"
             android:textSize="@dimen/_15sdp"
             app:layout_constraintTop_toBottomOf="@id/mainImageCarousel" />
@@ -74,6 +79,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:layout_marginTop="@dimen/_3sdp"
             android:paddingStart="@dimen/_10sdp"
             android:paddingEnd="@dimen/_10sdp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
@@ -90,7 +96,6 @@
             android:maxLines="1"
             android:paddingStart="@dimen/_10sdp"
             android:paddingEnd="@dimen/_10sdp"
-            android:text="MANGO"
             android:textAllCaps="true"
             android:textColor="@android:color/black"
             app:layout_constraintStart_toStartOf="parent"
@@ -106,7 +111,6 @@
             android:maxLines="1"
             android:paddingStart="@dimen/_10sdp"
             android:paddingEnd="@dimen/_10sdp"
-            android:text="Пальто Tailored из шерсти с лацканами"
             android:textAllCaps="true"
             android:textColor="@color/colorBlackText"
             app:layout_constraintStart_toStartOf="parent"
@@ -122,7 +126,6 @@
             android:maxLines="1"
             android:paddingStart="@dimen/_10sdp"
             android:paddingEnd="@dimen/_10sdp"
-            android:text="Верхняя одежда"
             android:textAllCaps="true"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/brandDesc" />
@@ -138,7 +141,6 @@
             android:maxLines="1"
             android:paddingStart="@dimen/_10sdp"
             android:paddingEnd="@dimen/_10sdp"
-            android:text="951,000 UZS"
             android:textAllCaps="true"
             android:textColor="@color/colorBlackText"
             android:textSize="@dimen/_14sdp"
@@ -163,7 +165,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_10sdp"
             android:layout_marginTop="@dimen/_2sdp"
-            android:text="Размер:"
+            android:text="@string/size_title"
             android:textColor="@color/colorBlackText"
             android:textSize="@dimen/_12sdp"
             app:layout_constraintStart_toStartOf="parent"
@@ -171,6 +173,7 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/productSizesRV"
+            android:layout_marginTop="@dimen/_2sdp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_10sdp"
@@ -187,7 +190,7 @@
             android:layout_marginStart="@dimen/_10sdp"
             android:layout_marginTop="@dimen/_2sdp"
             android:layout_marginEnd="@dimen/_10sdp"
-            android:text="Добавить в корзину"
+            android:text="@string/add_to_cart"
             android:textColor="@android:color/white"
             app:backgroundTint="@android:color/black"
             app:layout_constraintEnd_toEndOf="parent"
@@ -203,7 +206,7 @@
             android:layout_marginStart="@dimen/_5sdp"
             android:layout_marginTop="@dimen/_2sdp"
             android:stateListAnimator="@null"
-            android:text="В избранное"
+            android:text="@string/liked_image"
             android:textColor="@android:color/black"
             app:backgroundTint="@android:color/transparent"
             app:icon="@drawable/ic_favorite_outline"
@@ -225,7 +228,7 @@
             android:layout_marginTop="@dimen/_2sdp"
             android:layout_marginEnd="@dimen/_5sdp"
             android:stateListAnimator="@null"
-            android:text="Поделиться"
+            android:text="@string/share_image"
             android:textColor="@android:color/black"
             app:backgroundTint="@android:color/transparent"
             app:icon="@drawable/share_this"
@@ -257,6 +260,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:clickable="true"
+            android:animateLayoutChanges="true"
             android:focusable="true"
             android:orientation="vertical"
             app:layout_constraintStart_toStartOf="parent"
@@ -267,7 +271,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:stateListAnimator="@null"
-                android:text="ИНФОРМАЦИЯ О ПРОДУКТЕ"
+                android:text="@string/about_product"
                 android:textAlignment="viewStart"
                 android:textColor="@color/colorBlackText"
                 app:backgroundTint="@android:color/transparent"
@@ -308,7 +312,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:stateListAnimator="@null"
-            android:text="СОСТАВ И УХОД"
+            android:text="@string/product_elements"
             android:textAlignment="viewStart"
             android:textColor="@color/colorBlackText"
             app:backgroundTint="@android:color/transparent"
@@ -339,7 +343,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:stateListAnimator="@null"
-            android:text="ДОСТАВКА И ПРИМЕРКА"
+            android:text="@string/deliveryAndReturn"
             android:textAlignment="viewStart"
             android:textColor="@color/colorBlackText"
             app:backgroundTint="@android:color/transparent"
@@ -365,7 +369,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_10sdp"
-            android:text="Deliver and return"
+            android:text="@string/delivery_title"
             android:textColor="@color/colorBlackText"
             android:textSize="@dimen/_13sdp"
             app:layout_constraintTop_toBottomOf="@id/fifthDivider" />
@@ -376,7 +380,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_10sdp"
-            android:text="Deliver"
+            android:text="@string/deliver"
             android:textColor="@android:color/darker_gray"
             android:textSize="@dimen/_13sdp"
             app:layout_constraintStart_toStartOf="parent"
@@ -387,7 +391,6 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_10sdp"
-            android:text="16 March, Monday"
             android:textColor="@color/colorBlackText"
             android:textSize="@dimen/_13sdp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -399,7 +402,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_10sdp"
-            android:text="Return"
+            android:text="@string/returnTitle"
             android:textColor="@android:color/darker_gray"
             android:textSize="@dimen/_13sdp"
             app:layout_constraintStart_toStartOf="parent"
@@ -410,7 +413,6 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_10sdp"
-            android:text="During 14 days after receiving product"
             android:textColor="@color/colorBlackText"
             android:textSize="@dimen/_13sdp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -459,7 +461,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_10sdp"
-            android:text="Похожие товары"
+            android:text="@string/similar_goods"
             android:textColor="@color/colorBlackText"
             app:layout_constraintTop_toBottomOf="@id/seventhDivider" />
 
@@ -576,7 +578,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_10sdp"
-            android:text="Вы недавно просматривали"
+            android:text="@string/recently_seen"
             android:textColor="@color/colorBlackText"
             app:layout_constraintTop_toBottomOf="@id/eleventhDivider" />
 

@@ -1,9 +1,7 @@
 package uz.fizmasoft.seemens.ui
 
-import android.opengl.Visibility
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -17,6 +15,7 @@ import uz.fizmasoft.seemens.data.local.model.Delivery
 import uz.fizmasoft.seemens.data.local.model.Details
 import uz.fizmasoft.seemens.data.local.model.SeemensResponse
 import uz.fizmasoft.seemens.data.local.model.Size
+import uz.fizmasoft.seemens.extention.toast
 import uz.fizmasoft.seemens.ui.adapter.*
 import javax.inject.Inject
 
@@ -65,7 +64,6 @@ class MainActivity : DaggerAppCompatActivity() {
     }
 
     private fun onDataLoadedSuccess(response: SeemensResponse) {
-        println("observeData Success")
         setClickListeners()
         setupImageCarousel(response.details.images)
         setupProductDetails(response.details)
@@ -76,8 +74,9 @@ class MainActivity : DaggerAppCompatActivity() {
     }
 
     private var isInfoExpanded = false
+    private var isFavorite = false
     private val infoClicked = View.OnClickListener {
-        println("click event")
+
         isInfoExpanded = !isInfoExpanded
         val icon = ContextCompat.getDrawable(
             this,
@@ -92,22 +91,25 @@ class MainActivity : DaggerAppCompatActivity() {
         infoAboutProduct.icon = icon
     }
 
+
+    private val favoriteImageClicked = View.OnClickListener {
+        isFavorite = !isFavorite
+        val icon = ContextCompat.getDrawable(
+            this,
+            if (isFavorite)
+                R.drawable.ic_favorite_filled
+            else
+                R.drawable.ic_favorite_outline
+        )
+        favoriteImage.icon = icon
+    }
+
     private fun setClickListeners() {
-        infoAboutProductContainer.setOnClickListener{
-            println("click event")
-            isInfoExpanded = !isInfoExpanded
-            val icon = ContextCompat.getDrawable(
-                this,
-                if (isInfoExpanded) {
-                    infoMainContent.visibility = View.VISIBLE
-                    R.drawable.ic_minus
-                } else {
-                    infoMainContent.visibility = View.GONE
-                    R.drawable.ic_add
-                }
-            )
-            infoAboutProduct.icon = icon
-        }
+        infoAboutProduct.setOnClickListener(infoClicked)
+        backArrow.setOnClickListener { toast("Back button clicked") }
+        shareProduct.setOnClickListener { toast("Product share is clicked") }
+        btnAddToCart.setOnClickListener { toast("Product add to cart is clicked") }
+        favoriteImage.setOnClickListener(favoriteImageClicked)
     }
 
     private fun setupSimilarRecentlySeen(images: List<String>) {
@@ -170,8 +172,7 @@ class MainActivity : DaggerAppCompatActivity() {
     }
 
     private val socialMediaItemClick = object : SocialMediaAdapter.Interaction {
-        override fun onItemSelected(position: Int, item: SocialMediaData) {
-            Toast.makeText(this@MainActivity, item.link, Toast.LENGTH_SHORT).show()
-        }
+        override fun onItemSelected(position: Int, item: SocialMediaData) = toast(item.link)
     }
+
 }
