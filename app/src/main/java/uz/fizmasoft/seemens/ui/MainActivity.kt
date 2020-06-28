@@ -1,7 +1,10 @@
 package uz.fizmasoft.seemens.ui
 
+import android.opengl.Visibility
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import dagger.android.support.DaggerAppCompatActivity
@@ -21,7 +24,8 @@ class MainActivity : DaggerAppCompatActivity() {
 
     private lateinit var mainViewModel: MainActivityViewModel
 
-    @Inject lateinit var providerFactory: ViewModelProvider.Factory
+    @Inject
+    lateinit var providerFactory: ViewModelProvider.Factory
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -60,14 +64,50 @@ class MainActivity : DaggerAppCompatActivity() {
         println("observeData Loading")
     }
 
-    private fun onDataLoadedSuccess(response : SeemensResponse) {
+    private fun onDataLoadedSuccess(response: SeemensResponse) {
         println("observeData Success")
+        setClickListeners()
         setupImageCarousel(response.details.images)
         setupProductDetails(response.details)
         setupDeliveryData(response.delivery)
         setupSocialMedia()
         setupSimilarProducts(response.details.images)
         setupSimilarRecentlySeen(response.details.images)
+    }
+
+    private var isInfoExpanded = false
+    private val infoClicked = View.OnClickListener {
+        println("click event")
+        isInfoExpanded = !isInfoExpanded
+        val icon = ContextCompat.getDrawable(
+            this,
+            if (isInfoExpanded) {
+                infoMainContent.visibility = View.VISIBLE
+                R.drawable.ic_minus
+            } else {
+                infoMainContent.visibility = View.GONE
+                R.drawable.ic_add
+            }
+        )
+        infoAboutProduct.icon = icon
+    }
+
+    private fun setClickListeners() {
+        infoAboutProductContainer.setOnClickListener{
+            println("click event")
+            isInfoExpanded = !isInfoExpanded
+            val icon = ContextCompat.getDrawable(
+                this,
+                if (isInfoExpanded) {
+                    infoMainContent.visibility = View.VISIBLE
+                    R.drawable.ic_minus
+                } else {
+                    infoMainContent.visibility = View.GONE
+                    R.drawable.ic_add
+                }
+            )
+            infoAboutProduct.icon = icon
+        }
     }
 
     private fun setupSimilarRecentlySeen(images: List<String>) {
@@ -95,10 +135,13 @@ class MainActivity : DaggerAppCompatActivity() {
 
     private fun setupProductDetails(details: Details) {
         productName.text = details.name
+        infoMainContent.text = details.description
         setupSubCarousel(details.images)
         brandName.text = details.brand
         brandType.text = details.category
-        "${details.currency[0].price} ${details.currency[0].currency}".apply { productCost.text = this }
+        "${details.currency[0].price} ${details.currency[0].currency}".apply {
+            productCost.text = this
+        }
         setupSizeCarousel(details.attribute_combination.size)
     }
 

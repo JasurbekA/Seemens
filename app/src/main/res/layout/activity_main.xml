@@ -60,7 +60,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/_2sdp"
-            android:layout_marginBottom="@dimen/_2sdp"
+            android:paddingBottom="@dimen/_2sdp"
             android:ellipsize="end"
             android:gravity="center"
             android:maxLines="1"
@@ -256,6 +256,8 @@
             android:id="@+id/infoAboutProductContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
             android:orientation="vertical"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/secondDivider">
@@ -278,12 +280,12 @@
                 tools:ignore="UnusedAttribute" />
 
             <com.google.android.material.textview.MaterialTextView
-                android:visibility="gone"
                 android:id="@+id/infoMainContent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:paddingStart="@dimen/_10sdp"
                 android:paddingEnd="@dimen/_10sdp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:visibility="gone" />
 
 
         </LinearLayout>
