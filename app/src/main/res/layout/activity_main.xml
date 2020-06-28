@@ -12,24 +12,29 @@
         android:layout_height="wrap_content">
 
 
-        <androidx.appcompat.widget.AppCompatImageView
+        <androidx.viewpager.widget.ViewPager
+            android:fitsSystemWindows="false"
             android:id="@+id/mainImageCarousel"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_400sdp"
-            android:scaleType="centerCrop"
-            android:visibility="gone"
+            android:visibility="visible"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_launcher_background" />
 
-        <androidx.recyclerview.widget.RecyclerView
+        <com.google.android.material.tabs.TabLayout
+            android:background="@android:color/transparent"
+            android:id="@+id/carouselImageIndicator"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingStart="@dimen/_10sdp"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:tabGravity="start"
+            app:tabPaddingEnd="0dp"
+            app:tabMode="fixed"
+            app:tabIndicatorColor="@android:color/transparent"
+            app:tabBackground="@drawable/indicator_selector"
+            android:layout_marginStart="@dimen/_10sdp"
             app:layout_constraintBottom_toBottomOf="@id/mainImageCarousel"
             app:layout_constraintStart_toStartOf="@id/mainImageCarousel"
-            tools:ignore="RtlSymmetry" />
+            />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:layout_width="@dimen/_25sdp"
@@ -102,7 +107,7 @@
             android:paddingEnd="@dimen/_10sdp"
             android:text="Пальто Tailored из шерсти с лацканами"
             android:textAllCaps="true"
-            android:textColor="#D0000000"
+            android:textColor="@color/colorBlackText"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/brandName" />
 
@@ -134,7 +139,7 @@
             android:paddingEnd="@dimen/_10sdp"
             android:text="951,000 UZS"
             android:textAllCaps="true"
-            android:textColor="#D0000000"
+            android:textColor="@color/colorBlackText"
             android:textSize="@dimen/_14sdp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/brandType" />
@@ -158,7 +163,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_10sdp"
             android:text="Размер:"
-            android:textColor="#D0000000"
+            android:textColor="@color/colorBlackText"
             android:textSize="@dimen/_12sdp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/productCostDivider" />
@@ -254,12 +259,12 @@
             app:layout_constraintTop_toBottomOf="@id/secondDivider"
             android:layout_width="match_parent"
             app:icon="@drawable/ic_add"
-            android:textColor="#D0000000"
+            android:textColor="@color/colorBlackText"
             app:iconGravity="end"
             android:stateListAnimator="@null"
             android:text="ИНФОРМАЦИЯ О ПРОДУКТЕ"
             app:backgroundTint="@android:color/transparent"
-            app:iconTint="#D0000000"
+            app:iconTint="@color/colorBlackText"
             android:layout_height="wrap_content"
             tools:ignore="UnusedAttribute" />
 
@@ -284,12 +289,12 @@
             app:layout_constraintTop_toBottomOf="@id/thirdDivider"
             android:layout_width="match_parent"
             app:icon="@drawable/ic_add"
-            android:textColor="#D0000000"
+            android:textColor="@color/colorBlackText"
             app:iconGravity="end"
             android:stateListAnimator="@null"
             android:text="СОСТАВ И УХОД"
             app:backgroundTint="@android:color/transparent"
-            app:iconTint="#D0000000"
+            app:iconTint="@color/colorBlackText"
             android:layout_height="wrap_content"
             tools:ignore="UnusedAttribute" />
 
@@ -314,7 +319,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/fourthDivider"
             android:layout_width="match_parent"
-            android:textColor="#D0000000"
+            android:textColor="@color/colorBlackText"
             android:stateListAnimator="@null"
             android:text="ДОСТАВКА И ПРИМЕРКА"
             app:backgroundTint="@android:color/transparent"
@@ -338,7 +343,7 @@
             android:id="@+id/deliverReturn"
             android:textSize="@dimen/_13sdp"
             android:layout_marginStart="@dimen/_10sdp"
-            android:textColor="#D0000000"
+            android:textColor="@color/colorBlackText"
             app:layout_constraintTop_toBottomOf="@id/fifthDivider"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
@@ -356,7 +361,7 @@
             android:layout_height="wrap_content"/>
 
         <TextView
-            android:textColor="#D0000000"
+            android:textColor="@color/colorBlackText"
             android:textSize="@dimen/_13sdp"
             android:text="16 March, Monday"
             android:layout_marginStart="@dimen/_10sdp"
@@ -378,7 +383,7 @@
             android:layout_height="wrap_content"/>
 
         <TextView
-            android:textColor="#D0000000"
+            android:textColor="@color/colorBlackText"
             android:textSize="@dimen/_13sdp"
             android:text="During 14 days after receiving product"
             android:layout_marginStart="@dimen/_10sdp"
@@ -427,7 +432,7 @@
         <TextView
 
             android:layout_marginStart="@dimen/_10sdp"
-            android:textColor="#D0000000"
+            android:textColor="@color/colorBlackText"
             app:layout_constraintTop_toBottomOf="@id/seventhDivider"
             android:id="@+id/relatedProductsTitle"
             android:text="Похожие товары"
@@ -466,7 +471,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/eighthDivider"
             android:layout_width="match_parent"
-            android:textColor="#D0000000"
+            android:textColor="@color/colorBlackText"
             android:stateListAnimator="@null"
             android:text="Все Mango"
             app:backgroundTint="@android:color/transparent"
@@ -494,7 +499,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/ninthDivider"
             android:layout_width="match_parent"
-            android:textColor="#D0000000"
+            android:textColor="@color/colorBlackText"
             android:stateListAnimator="@null"
             android:text="Все верхняя одежда Mango"
             app:backgroundTint="@android:color/transparent"
@@ -521,7 +526,7 @@
             android:stateListAnimator="@null"
             android:text="Другие верхняя одежда"
             android:textAlignment="viewStart"
-            android:textColor="#D0000000"
+            android:textColor="@color/colorBlackText"
             app:backgroundTint="@android:color/transparent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -544,7 +549,7 @@
         <TextView
 
             android:layout_marginStart="@dimen/_10sdp"
-            android:textColor="#D0000000"
+            android:textColor="@color/colorBlackText"
             app:layout_constraintTop_toBottomOf="@id/eleventhDivider"
             android:id="@+id/recentlySeen"
             android:text="Вы недавно просматривали"
