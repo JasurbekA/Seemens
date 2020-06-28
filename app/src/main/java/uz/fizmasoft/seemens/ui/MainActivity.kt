@@ -35,6 +35,11 @@ class MainActivity : DaggerAppCompatActivity() {
 
     private fun init() {
         initVM()
+        loadData()
+        setClickListeners()
+    }
+
+    private fun loadData() {
         requestData()
         observeData()
     }
@@ -60,17 +65,25 @@ class MainActivity : DaggerAppCompatActivity() {
         })
 
     private fun onLoading() {
-        println("observeData Loading")
+        progressBar.visibility = View.VISIBLE
+        retryContainer.visibility = View.GONE
+        mainContent.visibility = View.GONE
     }
 
     private fun onDataLoadedSuccess(response: SeemensResponse) {
-        setClickListeners()
+        setupViewsVisibilityForSuccess()
         setupImageCarousel(response.details.images)
         setupProductDetails(response.details)
         setupDeliveryData(response.delivery)
         setupSocialMedia()
         setupSimilarProducts(response.details.images)
         setupSimilarRecentlySeen(response.details.images)
+    }
+
+    private fun setupViewsVisibilityForSuccess() {
+        progressBar.visibility = View.GONE
+        retryContainer.visibility = View.GONE
+        mainContent.visibility = View.VISIBLE
     }
 
     private var isInfoExpanded = false
@@ -110,6 +123,10 @@ class MainActivity : DaggerAppCompatActivity() {
         shareProduct.setOnClickListener { toast("Product share is clicked") }
         btnAddToCart.setOnClickListener { toast("Product add to cart is clicked") }
         favoriteImage.setOnClickListener(favoriteImageClicked)
+        btnRetry.setOnClickListener {
+            println("Checking point of calling retry click")
+            loadData()
+        }
     }
 
     private fun setupSimilarRecentlySeen(images: List<String>) {
@@ -125,7 +142,10 @@ class MainActivity : DaggerAppCompatActivity() {
     }
 
     private fun onDataLoadingError(errorMessage: String) {
-        println("observeData Error $errorMessage")
+        progressBar.visibility = View.GONE
+        retryContainer.visibility = View.VISIBLE
+        mainContent.visibility = View.GONE
+        errorMessageHolder.text = errorMessage
     }
 
 

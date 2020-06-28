@@ -12,4 +12,5 @@
     <string name="returnTitle">Return</string>
     <string name="similar_goods">Похожие товары</string>
     <string name="recently_seen">Вы недавно просматривали</string>
+    <string name="retry">Retry</string>
 </resources>
