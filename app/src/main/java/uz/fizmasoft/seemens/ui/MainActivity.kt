@@ -7,6 +7,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_main_content.*
+import kotlinx.android.synthetic.main.activity_main_loading_error.*
 import uz.fizmasoft.seemens.R
 import uz.fizmasoft.seemens.data.local.fake.SocialMediaData
 import uz.fizmasoft.seemens.data.local.fake.getProdAddViewData
@@ -117,16 +119,24 @@ class MainActivity : DaggerAppCompatActivity() {
         favoriteImage.icon = icon
     }
 
+
+    private val templateClick = View.OnClickListener { toast("Clicked") }
+
     private fun setClickListeners() {
         infoAboutProduct.setOnClickListener(infoClicked)
+        favoriteImage.setOnClickListener(favoriteImageClicked)
+        btnRetry.setOnClickListener { loadData() }
+
         backArrow.setOnClickListener { toast("Back button clicked") }
         shareProduct.setOnClickListener { toast("Product share is clicked") }
         btnAddToCart.setOnClickListener { toast("Product add to cart is clicked") }
-        favoriteImage.setOnClickListener(favoriteImageClicked)
-        btnRetry.setOnClickListener {
-            println("Checking point of calling retry click")
-            loadData()
-        }
+
+        otherProductInType.setOnClickListener(templateClick)
+        allProductInBrand.setOnClickListener(templateClick)
+        allProductInType.setOnClickListener(templateClick)
+        shareImage.setOnClickListener(templateClick)
+        delivery.setOnClickListener(templateClick)
+        ingredientProduct.setOnClickListener(templateClick)
     }
 
     private fun setupSimilarRecentlySeen(images: List<String>) {
@@ -156,14 +166,17 @@ class MainActivity : DaggerAppCompatActivity() {
     }
 
     private fun setupProductDetails(details: Details) {
-        productName.text = details.name
+        productName.text = details.attribute_combination.color.values[0].name
         infoMainContent.text = details.description
         setupSubCarousel(details.images)
         brandName.text = details.brand
+        brandDesc.text = details.name
         brandType.text = details.category
-        "${details.currency[0].price} ${details.currency[0].currency}".apply {
-            productCost.text = this
-        }
+        "Все ${details.brand}".apply { allProductInBrand.text = this }
+        "Все ${details.category} ${details.brand}".apply { allProductInType.text = this }
+        "Другие ${details.category}".apply { otherProductInType.text = this }
+        "${details.currency[0].price} ${details.attribute_combination.color.values[0].currency[0].currency}"
+            .apply { productCost.text = this }
         setupSizeCarousel(details.attribute_combination.size)
     }
 
